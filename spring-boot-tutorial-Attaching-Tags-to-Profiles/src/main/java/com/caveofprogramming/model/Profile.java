@@ -113,15 +113,21 @@ public class Profile {
 		this.interests = interests;
 	}
 
+	/* Create a profile that is suitable for displaying via JSP */
 	public void safeCopyFrom(Profile other) {
-		if(other.about != null) {
+		
+		if (other.about != null) {
 			this.about = other.about;
+		}
+		
+		if(other.interests != null) {
+			this.interests = other.interests;
 		}
 	}
 
+	/* Create a profile that is suitable for saving */
 	public void safeMergeFrom(Profile webProfile, PolicyFactory htmlPolicy) {
-		if(webProfile.about != null) {
-			this.about = webProfile.about;
+		if (webProfile.about != null) {
 			this.about = htmlPolicy.sanitize(webProfile.about);
 		}
 	}

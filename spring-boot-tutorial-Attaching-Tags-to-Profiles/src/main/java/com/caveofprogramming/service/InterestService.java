@@ -23,5 +23,18 @@ public class InterestService {
 	public void save(Interest interest) {
 		interestDao.save(interest);
 	}
+	
+	//@Transactional
+	public Interest createIfNotExists(String interestText) {
+		
+		Interest interest = interestDao.findOneByName(interestText);
+		
+		if(interest == null) {
+			interest = new Interest(interestText);
+			interestDao.save(interest);
+		}
+		
+		return interest;
+	}
 
 }
