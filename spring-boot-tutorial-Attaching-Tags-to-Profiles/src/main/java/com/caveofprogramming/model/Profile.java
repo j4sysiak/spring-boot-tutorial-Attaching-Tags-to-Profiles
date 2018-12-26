@@ -2,14 +2,19 @@ package com.caveofprogramming.model;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -42,6 +47,14 @@ public class Profile {
 	@Column(name = "photo_extension", length = 5)
 	private String photoExtension;
 
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="profile_interests", 
+					joinColumns={ @JoinColumn(name="profile_id") }, 
+							inverseJoinColumns = { @JoinColumn(name="interest_id") } )
+	@OrderColumn(name="display_order")
+	private Set<Interest> interests;	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -92,6 +105,14 @@ public class Profile {
 	}
 	
 	
+	public Set<Interest> getInterests() {
+		return interests;
+	}
+
+	public void setInterests(Set<Interest> interests) {
+		this.interests = interests;
+	}
+
 	public void safeCopyFrom(Profile other) {
 		if(other.about != null) {
 			this.about = other.about;
@@ -120,6 +141,9 @@ public class Profile {
 		
 		return Paths.get(baseDirectory, photoDirectory, photoName + "." +  photoExtension);
 	}
+	
+	
+	
 }
 
 

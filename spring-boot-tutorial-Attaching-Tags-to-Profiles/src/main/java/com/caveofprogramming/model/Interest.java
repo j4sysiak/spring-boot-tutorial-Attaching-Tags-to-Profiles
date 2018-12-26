@@ -77,6 +77,5 @@ public class Interest implements Comparable<Interest> {
 	public int compareTo(Interest other) {
 		return this.name.compareTo(other.name);
 	}
-
 	
 }
