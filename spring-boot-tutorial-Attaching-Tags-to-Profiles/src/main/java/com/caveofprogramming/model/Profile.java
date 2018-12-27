@@ -54,6 +54,12 @@ public class Profile {
 	@OrderColumn(name="display_order")
 	private Set<Interest> interests;	
 	
+	public Profile() {	
+	}
+	 
+	public Profile(SiteUser user) {
+		this.user = user;
+	}
 	
 	public Long getId() {
 		return id;
