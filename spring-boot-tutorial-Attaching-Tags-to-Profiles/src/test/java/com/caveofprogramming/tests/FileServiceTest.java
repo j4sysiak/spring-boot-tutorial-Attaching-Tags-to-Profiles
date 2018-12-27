@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.lang.reflect.Method;
 
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ import com.caveofprogramming.service.FileService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations="classpath:test.properties")
-//@Transactional
+@Transactional
 public class FileServiceTest {
 	
 	@Autowired

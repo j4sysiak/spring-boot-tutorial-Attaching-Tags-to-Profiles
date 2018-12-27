@@ -21,7 +21,7 @@ import com.caveofprogramming.model.StatusUpdateDao;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations="classpath:test.properties")
-//@Transactional
+@Transactional
 public class StatusTest {
 	
 	@Autowired
