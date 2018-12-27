@@ -176,8 +176,17 @@
 		<artifactId>owasp-java-html-sanitizer</artifactId>
 		<version>20181114.1</version>
 	</dependency>
- 
- </dependencies>
+
+	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-test</artifactId>
+		<version>5.0.4.RELEASE</version>
+		<scope>test</scope>
+	</dependency>
+
+	
+	</dependencies>
 
 	<!-- <build> -->
 	<!-- <plugins> -->

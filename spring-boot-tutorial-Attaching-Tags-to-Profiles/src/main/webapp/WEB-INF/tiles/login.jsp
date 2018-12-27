@@ -9,13 +9,13 @@
 <div class="row">
 
 	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-	
+
 		<c:if test="${param.error != null}">
 			<div class="login-error">Incorrect username or password.</div>
 		</c:if>
-
+		
 		<div class="panel panel-default">
-
+		 
 			<div class="panel-heading">
 				<div class="panel-title">User Log In</div>
 			</div>

@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 //import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,11 +27,23 @@ import com.caveofprogramming.service.InterestService;
 import com.caveofprogramming.service.ProfileService;
 import com.caveofprogramming.service.SiteUserService;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations="classpath:test.properties")
 @Transactional
 public class ProfileControllerRestTest {
+	
+	@Autowired
+	private SiteUserService siteUserService;
+
+	@Autowired
+	private ProfileService profileService;
+
+	@Autowired
+	private InterestService interestService;
 	
 	private MockMvc mockMvc;
 	
@@ -41,5 +54,43 @@ public class ProfileControllerRestTest {
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
+	
+	@Test
+	@WithMockUser(username = "p1@wp.pl")
+	public void testSaveAndDeleteInterest() throws Exception {
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
