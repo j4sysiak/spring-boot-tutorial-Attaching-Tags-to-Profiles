@@ -59,6 +59,9 @@ public class ProfileControllerRestTest {
 	@WithMockUser(username = "p1@wp.pl")
 	public void testSaveAndDeleteInterest() throws Exception {
 		
+		String interestText = "some interest_here";
+		
+		mockMvc.perform(post("/save-interest").param("name", interestText)).andExpect(status().isOk());
 	}
 
 }
