@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 //import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -62,6 +64,16 @@ public class ProfileControllerRestTest {
 		String interestText = "some interest_here";
 		
 		mockMvc.perform(post("/save-interest").param("name", interestText)).andExpect(status().isOk());
+		
+		Interest interest = interestService.get(interestText);
+		assertNotNull("Interest should exist", interest);
+		assertEquals("Retrieved interest text should match", interestText, interest.getName());
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		SiteUser user = siteUserService.get(email);
+		Profile profile = profileService.getUserProfile(user);
+		assertTrue("Profile should contain interest", profile.getInterests().contains(new Interest(interestText)));
 	}
 
 }

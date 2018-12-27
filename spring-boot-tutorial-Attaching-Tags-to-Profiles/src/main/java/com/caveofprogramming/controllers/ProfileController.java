@@ -241,6 +241,8 @@ public class ProfileController {
 	@ResponseBody
 	public ResponseEntity<?> saveInterest(@RequestParam("name") String interestName) {
 		
+		System.out.println("Hello there - saving interest in ProfileController.saveInterest()");
+		
 		SiteUser user = getUser();
 		Profile profile = profileService.getUserProfile(user);
 		
