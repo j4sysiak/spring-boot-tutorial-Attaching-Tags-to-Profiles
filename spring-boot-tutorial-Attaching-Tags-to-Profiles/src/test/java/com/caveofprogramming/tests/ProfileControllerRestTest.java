@@ -72,8 +72,15 @@ public class ProfileControllerRestTest {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		SiteUser user = siteUserService.get(email);
+		
 		Profile profile = profileService.getUserProfile(user);
 		assertTrue("Profile should contain interest", profile.getInterests().contains(new Interest(interestText)));
+		
+		
+		mockMvc.perform(post("/delete-interest").param("name", interestText)).andExpect(status().isOk());
+
+		profile = profileService.getUserProfile(user);
+		assertFalse("Profile should not contain interest", profile.getInterests().contains(new Interest(interestText)));
 	}
 
 }
