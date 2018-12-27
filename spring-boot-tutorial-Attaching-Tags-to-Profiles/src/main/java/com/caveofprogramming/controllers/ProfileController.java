@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.caveofprogramming.exceptions.ImageTooSmallException;
 import com.caveofprogramming.exceptions.InvalidFileException;
 import com.caveofprogramming.model.FileInfo;
+import com.caveofprogramming.model.Interest;
 import com.caveofprogramming.model.Profile;
 import com.caveofprogramming.model.SiteUser;
 import com.caveofprogramming.service.FileService;
@@ -228,6 +229,23 @@ private ModelAndView showProfile(SiteUser user) {
 				.contentLength(Files.size(photoPath))
 				.contentType(MediaType.parseMediaType(URLConnection.guessContentTypeFromName(photoPath.toString())))
 				.body(new InputStreamResource(Files.newInputStream(photoPath, StandardOpenOption.READ)));
+	}
+	
+	@RequestMapping(value="/save-interest", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> saveInterest(@RequestParam("name") String interestName) {
+		
+		SiteUser user = getUser();
+		Profile profile = profileService.getUserProfile(user);
+		
+		String cleanedInterestName = htmlPolicy.sanitize(interestName);
+		
+		Interest interest = interestService.createIfNotExists(cleanedInterestName);
+		
+		profile.addInterest(interest);
+		profileService.save(profile);
+		
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 }
 
