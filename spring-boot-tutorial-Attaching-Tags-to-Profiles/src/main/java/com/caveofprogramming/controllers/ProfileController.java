@@ -36,6 +36,7 @@ import com.caveofprogramming.model.Interest;
 import com.caveofprogramming.model.Profile;
 import com.caveofprogramming.model.SiteUser;
 import com.caveofprogramming.service.FileService;
+import com.caveofprogramming.service.InterestService;
 import com.caveofprogramming.service.ProfileService;
 import com.caveofprogramming.service.SiteUserService;
 import com.caveofprogramming.status.PhotoUploadStatus;
@@ -50,10 +51,13 @@ public class ProfileController {
 	private ProfileService profileService;
 	
 	@Autowired
+	private InterestService interestService;
+	
+	@Autowired
 	private PolicyFactory htmlPolicy;
 	
 	@Autowired
-	FileService fileService;
+	private FileService fileService;
 	
 	@Value("${photo.upload.ok}")
 	private String photoStatusOK;
@@ -69,6 +73,8 @@ public class ProfileController {
 	
 	@Value("${photo.upload.directory}")
 	private String photoUploadDirectory;
+
+	
 	
 	
 	private SiteUser getUser() {
@@ -79,7 +85,7 @@ public class ProfileController {
 		return siteUserService.get(email);
 	}
 	
-private ModelAndView showProfile(SiteUser user) {
+	private ModelAndView showProfile(SiteUser user) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		 

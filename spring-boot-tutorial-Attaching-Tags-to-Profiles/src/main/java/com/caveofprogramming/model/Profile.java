@@ -153,9 +153,15 @@ public class Profile {
 		
 		return Paths.get(baseDirectory, photoDirectory, photoName + "." +  photoExtension);
 	}
-	
-	
-	
+
+	public void addInterest(Interest interest) {
+		interests.add(interest);
+	}
+
+	public void removeInterest(String interestName) {
+		interests.remove(new Interest(interestName));
+	}
+ 
 }
 
 
