@@ -253,6 +253,20 @@ public class ProfileController {
 		
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/delete-interest", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> deleteInterest(@RequestParam("name") String interestName) {
+		
+		SiteUser user = getUser();
+		Profile profile = profileService.getUserProfile(user);
+	
+		profile.removeInterest(interestName);
+	
+		profileService.save(profile);
+		
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
 }
 
 
