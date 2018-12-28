@@ -18,7 +18,17 @@
 		
 		<div id="interestDiv">
 			<ul id="interestList">
-				<li>Add your interests here (example: music)!</li>  
+				<c:choose>
+					<c:when test="${empty profile.interests}">
+						<li>Add your interests here (example: music)!</li>
+					</c:when>
+					
+					<c:otherwise>
+						<c:forEach var="interest" items="${profile.interests}">
+							<li>${interest}</li>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose> 
 			</ul>
 		</div>
 
@@ -117,14 +127,27 @@ function editInterest(text, actionUrl) {
 	 var token = $("meta[name='_csrf']").attr("content");
 	 var header = $("meta[name='_csrf_header']").attr("content");
 	
-	alert(token +": "+ header);
+	//alert(token +": "+ header);
 	
-// 	 $.ajaxPrefilter(
-// 			 function(options, originalOptions, jqXHR) {
-// 				jqXHR.setRequestHeader(header, token);
-// 			 }
-// 			 );
+	 $.ajaxPrefilter(
+			 function(options, originalOptions, jqXHR) {
+				jqXHR.setRequestHeader(header, token);
+			 }
+			 );
 	 
+	 $.ajax({
+			'url' : actionUrl,
+			data : {
+				'name' : text
+			},
+			type : 'POST',
+			success : function() {
+				  //alert("Ok");
+			},
+			error : function() {
+				  //alert("error");
+			}
+		});
 }
 
 
