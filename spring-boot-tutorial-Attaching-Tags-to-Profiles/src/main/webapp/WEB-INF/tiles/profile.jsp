@@ -111,7 +111,20 @@ function deleteInterest(text) {
 }
 
 function editInterest(text, actionUrl) {
-	alert(text +": "+ actionUrl);
+	 
+	//alert(text +": "+ ctionUrl);
+	 
+	 var token = $("meta[name='_csrf']").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");
+	
+	alert(token +": "+ header);
+	
+// 	 $.ajaxPrefilter(
+// 			 function(options, originalOptions, jqXHR) {
+// 				jqXHR.setRequestHeader(header, token);
+// 			 }
+// 			 );
+	 
 }
 
 
