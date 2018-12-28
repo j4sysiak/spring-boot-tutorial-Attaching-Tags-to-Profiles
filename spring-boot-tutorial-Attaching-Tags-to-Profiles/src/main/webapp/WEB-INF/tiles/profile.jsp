@@ -7,6 +7,8 @@
 
 <c:url var="profilePhoto" value="/profilephoto/${userId}" />
 <c:url var="editProfileAbout" value="/edit-profile-about" />
+<c:url var="saveInterest" value="/save-interest" />
+<c:url var="deleteInterest" value="/delete-interest" />
 
 <div class="row">
 
