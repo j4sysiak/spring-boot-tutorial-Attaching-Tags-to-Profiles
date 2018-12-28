@@ -13,6 +13,14 @@
 	<div class="col-md-10 col-md-offset-1">
 	
 		<div id="profile-photo-status">Photo uploaded</div>
+		
+		<div id="interestDiv">
+			<ul id="interestList">
+				<li>aaaaaa</li>
+				<li>bbbbbb</li>
+				<li>cccccc</li>
+			</ul>
+		</div>
 
 		<div class="profile-about">
 
@@ -95,7 +103,28 @@ function uploadPhoto(event) {
 }
 
 $(document).ready(function() {
-	console.log("Document loaded.");
+	
+// 	setUploadStatusText("Hello there.");
+// 	console.log("Document loaded.");
+
+	$("#interestList").tagit({
+		
+		afterTagRemoved : function(event, ui) {
+			//deleteInterest(ui.tagLabel);
+			alert("Removed");
+		},
+		
+		afterTagAdded : function(event, ui) {
+			if (ui.duringInitialization != true) {
+				//saveInterest(ui.tagLabel);
+				alert("Added");
+			}
+		},
+		caseSensitive : false,
+		allowSpaces : true,
+		tagLimit : 10 
+// 		readOnly: '${ownProfile}' == 'false'
+	});
 	
 	$("#uploadLink").click(
 							function(event) {
