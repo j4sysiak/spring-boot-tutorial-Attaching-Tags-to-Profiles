@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter   {
 									 "/confirmregister")
 						.permitAll()
 						.antMatchers(
-							"/js/*",
+							"/js/*" ,
 							"/css/*",
 							"/img/*")
 						.permitAll()
