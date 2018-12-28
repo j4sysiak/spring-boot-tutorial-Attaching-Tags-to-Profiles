@@ -40,7 +40,9 @@
 				</div>
 				
 				<div class="text-center">
-					<a href="#" id="uploadLink">Upload photo</a>
+					<c:if test="${ownProfile == true}">
+						<a href="#" id="uploadLink">Upload photo</a>
+					</c:if>
 				</div>
 			</div>
 
@@ -58,7 +60,9 @@
 		</div>
 
 		<div class="profile-about-edit">
-			<a href="${editProfileAbout}">edit</a>
+			<c:if test="${ownProfile == true}">
+				<a href="${editProfileAbout}">edit</a>
+			</c:if>
 		</div>
 		 
 		
@@ -173,8 +177,8 @@ $(document).ready(function() {
 		},
 		caseSensitive : false,
 		allowSpaces : true,
-		tagLimit : 10 
-// 		readOnly: '${ownProfile}' == 'false'
+		tagLimit : 10,
+  		readOnly: '${ownProfile}' == 'false'
 	});
 	
 	$("#uploadLink").click(
