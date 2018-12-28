@@ -16,9 +16,7 @@
 		
 		<div id="interestDiv">
 			<ul id="interestList">
-				<li>aaaaaa</li>
-				<li>bbbbbb</li>
-				<li>cccccc</li>
+				<li>Add your interests here (example: music)!</li>  
 			</ul>
 		</div>
 
@@ -102,6 +100,21 @@ function uploadPhoto(event) {
 	event.preventDefault();
 }
 
+function saveInterest(text) {
+	 editInterest(text, "${saveInterest}");
+}
+
+function deleteInterest(text) {
+	 editInterest(text, "${deleteInterest}");
+}
+
+function editInterest(text, actionUrl) {
+	alert(text +": "+ actionUrl);
+}
+
+
+
+
 $(document).ready(function() {
 	
 // 	setUploadStatusText("Hello there.");
@@ -110,14 +123,14 @@ $(document).ready(function() {
 	$("#interestList").tagit({
 		
 		afterTagRemoved : function(event, ui) {
-			//deleteInterest(ui.tagLabel);
-			alert("Removed");
+			deleteInterest(ui.tagLabel);
+			//alert("Removed");
 		},
 		
 		afterTagAdded : function(event, ui) {
 			if (ui.duringInitialization != true) {
-				//saveInterest(ui.tagLabel);
-				alert("Added");
+				saveInterest(ui.tagLabel);
+				//alert("Added");
 			}
 		},
 		caseSensitive : false,
