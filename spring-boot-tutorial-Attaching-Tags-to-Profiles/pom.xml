@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.caveofprogramming</groupId>
+	<groupId>pl.jaceksysiak</groupId>
 	<artifactId>spring-boot-tutorial-Attaching-Tags-to-Profiles</artifactId>
 	<version>1.0</version>
 
@@ -212,7 +212,7 @@
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
 						<program>
-							<mainClass>com.caveofprogramming.App</mainClass>
+							<mainClass>pl.jaceksysiak.App</mainClass>
 							<name>webapp</name>
 						</program>
 					</programs>
